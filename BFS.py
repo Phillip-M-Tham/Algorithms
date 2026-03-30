@@ -6,10 +6,20 @@ def generateMaze(theMaze):
             theMaze.append(row)
     return theMaze
 myMaze= generateMaze(myMaze)
-#print(myMaze)
+#function to print out the generated maze
 def printMaze(theMaze):
     for row in theMaze:
         for cell in row:
             print(cell, end="")
         print();
-printMaze(myMaze)
+
+printMaze(myMaze)#test for printing out the maze
+
+def findStartPos(theMaze):
+    for row in range(len(theMaze)):
+        for col in range(len(theMaze[row])):
+            if theMaze[row][col] == 'S':
+                return (row,col)
+            
+StartPos= findStartPos(myMaze)
+print(StartPos)
