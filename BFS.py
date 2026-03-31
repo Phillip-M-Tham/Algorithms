@@ -25,7 +25,6 @@ def findStartPos(theMaze):
                 return (row,col)
             
 StartPos= findStartPos(myMaze)
-print(StartPos)
 
 #in order for BFS to work, we need a queue, a visited set, starting position, and directions(up,down,left,right)
 def bfs(theMaze,startingposition):
@@ -39,7 +38,7 @@ def bfs(theMaze,startingposition):
     while len(queue) > 0: #while queue is not empty run this while loop
         CurRow, CurCol, path = queue.popleft() #removes beginning item from queue
         if(CurRow,CurCol) in visited:
-            continue #skip this iteration if CurRow, CurCol has already been visitied
+            continue #skip this iteration if [CurRow, CurCol] has already been visitied
         
         visited.append((CurRow,CurCol)) # add the (CurRow,CurCol) to the visited list
         
@@ -49,6 +48,7 @@ def bfs(theMaze,startingposition):
         
         #Direction Checks to Update Queue
             #Boundary check
+                #DID WE FIND THE SOLUTION CHECK
                 #Valid Spot Check
                     #Did We Already visit it check
         #Check above current position (5,5) -> (4,5)
@@ -56,7 +56,7 @@ def bfs(theMaze,startingposition):
         tempCol = CurCol
         if(tempRow >= 0): # make sure we are in the maze
             if theMaze[tempRow][tempCol]=='F':
-                return path + [(CurRow,CurCol)]
+                return path + [(tempRow,tempCol)]
             if theMaze[tempRow][tempCol] == '0': #make sure our projected spot is a viable empty spot
                 if(tempRow,tempCol) not in visited: #make sure we are not adding an already visited spot to the queue that processes each node
                     queue.append((tempRow,tempCol,path + [(tempRow,tempCol)]))
@@ -89,5 +89,21 @@ def bfs(theMaze,startingposition):
                     queue.append((tempRow,tempCol,path +[(tempRow,tempCol)]))
     #we could not find a valid solution
     return None
+
+def generateSolution(theMaze,theSolution):
+    print("Generating Solution")
+    mazeCopy=[]
+    #get a copy of the the maze
+    for row in theMaze:
+        copyRow=[]
+        for col in row:
+            copyRow.append(col)
+        mazeCopy.append(copyRow)
+    for row,column in theSolution:
+        if mazeCopy[row][column] not in ('S','F'):
+            mazeCopy[row][column]="x"
+    printMaze(mazeCopy)
+    
 mySolution=bfs(myMaze,StartPos)
-print(mySolution)
+
+generateSolution(myMaze,mySolution)
