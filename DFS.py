@@ -16,3 +16,24 @@ def printMaze(theMaze):
         print(" ")
 
 printMaze(myMaze)
+
+def findStartPos(theMaze):
+    for row in range(len(theMaze)):
+        for col in range(len(theMaze[0])):
+            if theMaze[row][col]=="S":
+                return [row,col]
+            
+def findFinishPos(theMaze):
+    for row in range(len(theMaze)):
+        for col in range(len(theMaze[0])):
+            if theMaze[row][col]=="F":
+                return [row,col]
+            
+startPos=findStartPos(myMaze)
+endPos=findFinishPos(myMaze)
+print(startPos)
+print(endPos)
+
+def dfs(myMaze,startPos,endPos){
+    
+}
