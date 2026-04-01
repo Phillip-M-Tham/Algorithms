@@ -28,3 +28,9 @@ def findFinishPos(theMaze):
                 return [row,col]
 endPos=findFinishPos(myMaze)
 print(endPos)
+#set path with starting position
+path=[[startPos]]
+
+def dfs(curRow,curCol,path){
+    
+}
