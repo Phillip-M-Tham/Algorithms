@@ -94,5 +94,22 @@ def dfs(myMaze,startPos):
     #could not find a valid path
     return None
 
+def generateSolution(theMaze,theSolution):
+    print("Generating Solution")
+    mazeCopy=[]
+    #get a copy of the the maze
+    for row in theMaze:
+        copyRow=[]
+        for col in row:
+            copyRow.append(col)
+        mazeCopy.append(copyRow)
+    for row,column in theSolution:
+        if mazeCopy[row][column] not in ('S','F'):
+            mazeCopy[row][column]="x"
+    printMaze(mazeCopy)
+
 mySolution=dfs(myMaze,startPos)
 print(mySolution)
+print(f"total steps {len(mySolution)}")
+
+generateSolution(myMaze,mySolution)
