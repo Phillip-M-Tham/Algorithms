@@ -31,7 +31,7 @@ def bfs(theMaze,startingposition):
     TotalRows,TotalCols = len(theMaze),len(theMaze[0])
 
     queue = deque()
-    queue.append((startingposition[0],startingposition[1],[])) #current row,current col, path
+    queue.append((startingposition[0],startingposition[1],[startingposition])) #current row,current col, path
 
     visited =[]
 
@@ -105,5 +105,5 @@ def generateSolution(theMaze,theSolution):
     printMaze(mazeCopy)
     
 mySolution=bfs(myMaze,StartPos)
-
+print(f"total steps {len(mySolution)}")
 generateSolution(myMaze,mySolution)
