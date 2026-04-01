@@ -105,5 +105,4 @@ def generateSolution(theMaze,theSolution):
     printMaze(mazeCopy)
     
 mySolution=bfs(myMaze,StartPos)
-
 generateSolution(myMaze,mySolution)
