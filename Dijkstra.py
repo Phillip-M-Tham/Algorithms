@@ -1,0 +1,2 @@
+myMaze=[]
+mySolution=[]
