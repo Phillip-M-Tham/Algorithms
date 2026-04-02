@@ -2,7 +2,7 @@
 This Repo is designed to showcase algorithms solving 2D array ASCII mazes.
 ## Breadth First Search(BFS)
 BFS uses a First in First Out(FIFO) process to explore each spot by layer. This visits all neighbors by layer and finds the shortest path to the goal.
-BFS uses a queue to conduct FIFO, a list to manage visited spots, and method to track the valid path. This solution uses a list of lists containing [row][col] coordinates.
+BFS uses a queue to conduct FIFO, a list to track visited spots, and a method to track the valid path. This solution uses a list of lists containing [row][col] coordinates for path and visited trackers.
 ### Logic Flow
 1. Add Starting position to queue.
 2. Set visited list to an empty list.
@@ -51,6 +51,7 @@ BFS uses a queue to conduct FIFO, a list to manage visited spots, and method to 
       5. Check if temp location is not already in visited.
       6. Add temp location to the queue to be processed. 
 ## Depth First Search(DFS)
-DFS uses a Last in First Out(LIFO) process to explore max depth for a valid path. DFS uses a stack to track valid paths.
+DFS uses a Last in First Out(LIFO) process to explore max depth for a valid path. A max depth will continue until it hits a condtion that makes the path no longer valid or it finds the goal. This does not find the shortest path. The nature of conducting LIFO allows a natural fit for recursion.
+DFS uses a stack to conduct LIFO, a list to track visited spots, and a method to track a valid path. This solution uses a list of lists containing [row][column] coorinates for path and visited trackers.
 ## Helper Functions
 ## The Maze
