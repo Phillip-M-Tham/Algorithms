@@ -1,3 +1,5 @@
+import random
+
 myMaze=[]
 mySolution=[]
 def generateMaze(theMaze):
@@ -12,4 +14,19 @@ def printMaze(theMaze):
             print(theMaze[row][col],end="")
         print(" ")
 myMaze=generateMaze(myMaze)
+printMaze(myMaze)
+
+#Randomizer
+def randomizer():
+    options=["0","3","4"]
+    return random.choice(options);
+#Modify default maze to scatter wieghts
+def scatterWeights(theMaze):
+    for row in range(len(theMaze)):
+        for col in range(len(theMaze[0])):
+            if (theMaze[row][col]=="0"):
+                randomWeight=randomizer()
+                theMaze[row][col]=randomWeight
+    return theMaze
+myMaze=scatterWeights(myMaze)
 printMaze(myMaze)
