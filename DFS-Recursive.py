@@ -1,0 +1,86 @@
+myMaze=[]
+mySolution=[]
+visited=[]
+path=[]
+def generateMaze(theMaze):
+    with open("maze.txt","r") as file:
+        for line in file:
+            row=list(line.strip())
+            theMaze.append(row)
+        return theMaze
+myMaze=generateMaze(myMaze)
+def printMaze(theMaze):
+    for row in range(len(theMaze)):
+        for col in range(len(theMaze[row])):
+            print(theMaze[row][col], end="")
+        print(" ")
+printMaze(myMaze)
+
+def findStartPos(theMaze):
+    for row in range(len(theMaze)):
+        for col in range(len(theMaze[row])):
+            if(theMaze[row][col]=="S"):
+                return [row,col]
+startPos=findStartPos(myMaze)
+print(startPos)
+def findFinishPos(theMaze):
+    for row in range(len(theMaze)):
+        for col in range(len(theMaze[row])):
+            if(theMaze[row][col]=="F"):
+                return [row,col]
+endPos=findFinishPos(myMaze)
+print(endPos)
+def dfs(theMaze,curRow,curCol,path,visited):
+    
+    #out of bounds checks
+    if(curRow < 0 ):
+        return None
+    if(curCol < 0):
+        return None
+    if(curRow >= len(theMaze)):
+        return None
+    if(curCol >= len(theMaze[0])):
+        return None
+    #wall check
+    if(theMaze[curRow][curCol]=="1"):
+        return None
+    #update path
+    path=path + [(curRow,curCol)]
+    #goal check
+    if(theMaze[curRow][curCol]=="F"):
+        return path
+    #already visited check
+    if (curRow,curCol) in visited:
+        return None
+
+    #add current spot to visited
+    visited.append((curRow,curCol))
+    #try right (5,5) -> (5,6)
+    tempRow=curRow
+    tempCol=curCol+1
+    result=dfs(theMaze,tempRow,tempCol,path,visited)
+    if result is not None:
+        return result
+    #try down (5,5) -> (6,5)
+    tempRow=curRow+1
+    tempCol=curCol
+    result=dfs(theMaze,tempRow,tempCol,path,visited)
+    if result is not None:
+        return result
+    #try left(5,5)-> (5,4)
+    tempRow=curRow
+    tempCol=curCol-1
+    result=dfs(theMaze,tempRow,tempCol,path,visited)
+    if result is not None:
+        return result
+    #try up (5,5) -> (4,5)
+    tempRow=curRow-1
+    tempCol=curCol
+    result=dfs(theMaze,tempRow,tempCol,path,visited)
+    if result is not None:
+        return result
+    
+
+mySolution=dfs(myMaze,startPos[0],startPos[1],path,visited)
+print(mySolution)
+print(f"total steps is {len(mySolution)}")
