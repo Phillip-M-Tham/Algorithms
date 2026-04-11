@@ -111,5 +111,31 @@ DFS uses a stack to conduct LIFO, a list to track visited spots, and a method to
          1. Updates path with temp location.
 4. Return None if unable to find a valid path. 
 ### Logic Flow Recursively
+## Dijkstra's Alogorithm
+Dijkstra is used to find the lowest cost path in a weighted system. This maze is altered to have weights by randomizing 0,3,4 for valid spots previously represented as only 0. This algorithm uses a priority queue as a heap to process lowest accumulated cost for a valid path. There are two separate trackers, distGrid for minimum distance and prevGrid for path taken, to properly update the heap queue. The heap queue is used to keep items ordered by accumulated total cost which allows only the items with the lowest total cost to be processed first efficiently.
+### Logic Flow
+1. Set starting cost to 0.
+2. Add starting cost and starting position to heap queue.
+3. Set trackers for distGrid and prevGrid.
+4. while heap queue is not empty.
+   1. Remove first item from heap to update current cost, current row, and current column.
+   2. Conduct goal check with current row and current column against the Maze.
+   3. Run a for loop for coordinates up left down and right [-1,0],[0,-1],[1,0],[0,1] represented as [deltaRow,deltaCol].
+      1. update temprow and tempcol by adding tempRow to deltaRow and tempCol to deltaCol.
+      2. Conduct boundary check with temp location (0 <= tempRow < total rows of maze and 0 <= tempCol < total columns of maze).
+         1. Check if temp location is goal.
+            1. Update tempCost with currentCost + 1.
+         2. check if temp location is valid spot 0.
+            1. Update tempCost with currentCost + 1. 
+         3. check if temp location is valid spot 3.
+            1. Update tempCost with currentCost + 3. 
+         4. check if temp location is valid spot 4.
+            1. update tempCost with currentCost +4. 
+         5. Skip this iteration if temp location is not a valid spot.
+         6. Conduct lowest cost check with current cost against tempCost.
+            1. update distGrid with temp location storing tempCost.
+            2. update prevGrid with temp location storing current location.
+            3. update heapqueue with tempCost and temp location.
+5. Return None if unable to find a valid path.      
 ## Helper Functions
 ## The Maze
