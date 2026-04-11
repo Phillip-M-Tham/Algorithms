@@ -18,7 +18,6 @@ def printMaze(theMaze):
         print(" ")
 
 myMaze=generateMaze(myMaze)
-printMaze(myMaze)
 
 #Randomizer
 def randomizer():
@@ -88,9 +87,8 @@ def dijkstra(theMaze,startPos):
             #boundary check
             if(0 <= tempRow <len(theMaze) and 0<= tempCol < len(theMaze[0])):
                 if(theMaze[tempRow][tempCol]=="F"):
-                    prevGrid[tempRow][tempCol]=(curRow,curCol)
-                    return currentCost, prevGrid
-                if(theMaze[tempRow][tempCol]=="0"):
+                    tempCost=currentCost+getCost(0)
+                elif(theMaze[tempRow][tempCol]=="0"):
                     tempCost=currentCost+getCost(0)
                 elif(theMaze[tempRow][tempCol]=="3"):
                     tempCost=currentCost+getCost(3)
@@ -120,3 +118,4 @@ shortestCost,pathGrid=dijkstra(myMaze,startPos)
 print("===================================================")
 myPath=getPath(pathGrid,endPos)
 print(myPath)
+print(f"total steps is {len(myPath)}")
