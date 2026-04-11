@@ -100,6 +100,8 @@ def dijkstra(theMaze,startPos):
                     distGrid[tempRow][tempCol]=tempCost
                     prevGrid[tempRow][tempCol]=(curRow,curCol)
                     heapq.heappush(heapqueue,(tempCost,tempRow,tempCol))
+    #return none for totalCost and none for path if unable to find valid solution
+    return None,None
             
 def getPath(pathGrid,endPos):
     cur=endPos
