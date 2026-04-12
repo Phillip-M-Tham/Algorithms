@@ -16,19 +16,18 @@ def printMaze(theMaze):
         print(" ")
 printMaze(myMaze)
 
-def findStartPos(theMaze):
+def findStartEndPos(theMaze):
+    startPos=[]
+    endPos=[]
     for row in range(len(theMaze)):
         for col in range(len(theMaze[row])):
             if(theMaze[row][col]=="S"):
-                return [row,col]
-startPos=findStartPos(myMaze)
-print(startPos)
-def findFinishPos(theMaze):
-    for row in range(len(theMaze)):
-        for col in range(len(theMaze[row])):
+                startPos= [row,col]
             if(theMaze[row][col]=="F"):
-                return [row,col]
-endPos=findFinishPos(myMaze)
+                endPos=[row,col]
+    return startPos,endPos
+startPos,endPos=findStartEndPos(myMaze)
+print(startPos)
 print(endPos)
 def dfs(theMaze,curRow,curCol,path,visited):
     
@@ -79,8 +78,16 @@ def dfs(theMaze,curRow,curCol,path,visited):
     result=dfs(theMaze,tempRow,tempCol,path,visited)
     if result is not None:
         return result
+def generateSolution(theMaze,theSolution):
+    for row in range(len(theMaze)):
+        for col in range(len(theMaze[0])):
+            if(theMaze[row][col]!= "S" or theMaze[row][col]!= "F"):
+                if (row,col) in theSolution:
+                    theMaze[row][col]="X"
+    printMaze(theMaze)
     
 
 mySolution=dfs(myMaze,startPos[0],startPos[1],path,visited)
 print(mySolution)
 print(f"total steps is {len(mySolution)}")
+generateSolution(myMaze,mySolution)

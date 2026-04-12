@@ -18,20 +18,18 @@ def printMaze(theMaze):
 
 printMaze(myMaze)
 
-def findStartPos(theMaze):
+def findStartEndPos(theMaze):
+    startPos=[]
+    endPos=[]
     for row in range(len(theMaze)):
         for col in range(len(theMaze[0])):
             if theMaze[row][col]=="S":
-                return [row,col]
-            
-def findFinishPos(theMaze):
-    for row in range(len(theMaze)):
-        for col in range(len(theMaze[0])):
+                startPos= [row,col]
             if theMaze[row][col]=="F":
-                return [row,col]
-            
-startPos=findStartPos(myMaze)
-endPos=findFinishPos(myMaze)
+                endPos=[row,col]
+    return startPos,endPos
+                        
+startPos,endPos=findStartEndPos(myMaze)
 print(startPos)
 print(endPos)
 
