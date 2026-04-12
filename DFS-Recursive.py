@@ -78,8 +78,16 @@ def dfs(theMaze,curRow,curCol,path,visited):
     result=dfs(theMaze,tempRow,tempCol,path,visited)
     if result is not None:
         return result
+def generateSolution(theMaze,theSolution):
+    for row in range(len(theMaze)):
+        for col in range(len(theMaze[0])):
+            if(theMaze[row][col]!= "S" or theMaze[row][col]!= "F"):
+                if (row,col) in theSolution:
+                    theMaze[row][col]="X"
+    printMaze(theMaze)
     
 
 mySolution=dfs(myMaze,startPos[0],startPos[1],path,visited)
 print(mySolution)
 print(f"total steps is {len(mySolution)}")
+generateSolution(myMaze,mySolution)

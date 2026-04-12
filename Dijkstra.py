@@ -112,6 +112,13 @@ def getPath(pathGrid,endPos):
     path.reverse()
     return path
 
+def generateSolution(theMaze,theSolution):
+    for row in range(len(theMaze)):
+        for col in range(len(theMaze[0])):
+            if(theMaze[row][col] != "S" or theMaze[row][col] != "F"):
+                if (row,col) in theSolution:
+                    theMaze[row][col]="X"
+    printMaze(theMaze)
 #update maze to get scattered weights
 myMaze=scatterWeights(myMaze)
 printMaze(myMaze)
@@ -120,4 +127,5 @@ shortestCost,pathGrid=dijkstra(myMaze,startPos)
 print("===================================================")
 myPath=getPath(pathGrid,endPos)
 print(myPath)
-print(f"total steps is {len(myPath)}")
+print(f"total steps is {len(myPath)} with total cost of {shortestCost}")
+generateSolution(myMaze,myPath)
