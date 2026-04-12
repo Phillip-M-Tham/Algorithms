@@ -67,30 +67,11 @@ DFS uses a stack to conduct LIFO, a list to track visited spots, and a method to
 8. Check if current row and current column is already in visited list.
    1. Return None.
 9. Update visited list with current row and current column.
-10. Check above of current location.
-    1. Set tempRow to current row -1.
-    2. Set tempCol to current column.
-    3. Set result to DFS passing in theMaze,tempRow,tempCol,path list and visited list as parameters.
-       1. if result is not None, a valid path is found.
-          1. Return result.
-11. Check left of current location.
-    1. Set tempRow to current row.
-    2. Set tempCol to current column -1.
-    3. Set result to DFS passing in theMaze,tempRow,tempCol,path list and visited list as parameters.
-       1. if result is not None, a valid path is found.
-          1. Return result.
-12. Check below of current location.
-    1. Set tempRow to current row +1.
-    2. Set tempCol to current column.
-    3. Set result to DFS passing in theMaze,tempRow,tempCol,path list and visited list as parameters.
-       1. if result is not None, a valid path is found.
-          1. Return result.
-13. Check right of current location.
-    1. Set tempRow to current row.
-    2. Set tempCol to current column +1.
-    3. Set result to DFS passing in theMaze,tempRow,tempCol,path list and visited list as parameters.
-       1. if result is not None, a valid path is found.
-          1. Return result.
+10. Run a for loop for coordinates up left down and right [-1,0],[0,-1],[1,0],[0,1] represented as [deltaRow,deltaCol].
+      1. update temprow and tempcol by adding tempRow to deltaRow and tempCol to deltaCol.
+      2.  Set result to DFS passing in theMaze,tempRow,tempCol,path list and visited list as parameters.
+          1. if result is not None, a valid path is found.
+              1. Return result.
 
 ## Dijkstra's Alogorithm
 Dijkstra is used to find the lowest cost path in a weighted system. This maze is altered to have weights by randomizing 0,3,4 for valid spots previously represented as only 0. This algorithm uses a priority queue as a heap to process lowest accumulated cost for a valid path. There are two separate trackers, distGrid for minimum distance and prevGrid for path taken, to properly update the heap queue. The heap queue is used to keep items ordered by accumulated total cost which allows only the items with the lowest total cost to be processed first efficiently.

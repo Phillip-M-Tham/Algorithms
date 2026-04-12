@@ -51,33 +51,16 @@ def dfs(theMaze,curRow,curCol,path,visited):
     #already visited check
     if (curRow,curCol) in visited:
         return None
-
     #add current spot to visited
     visited.append((curRow,curCol))
-    #try right (5,5) -> (5,6)
-    tempRow=curRow
-    tempCol=curCol+1
-    result=dfs(theMaze,tempRow,tempCol,path,visited)
-    if result is not None:
-        return result
-    #try down (5,5) -> (6,5)
-    tempRow=curRow+1
-    tempCol=curCol
-    result=dfs(theMaze,tempRow,tempCol,path,visited)
-    if result is not None:
-        return result
-    #try left(5,5)-> (5,4)
-    tempRow=curRow
-    tempCol=curCol-1
-    result=dfs(theMaze,tempRow,tempCol,path,visited)
-    if result is not None:
-        return result
-    #try up (5,5) -> (4,5)
-    tempRow=curRow-1
-    tempCol=curCol
-    result=dfs(theMaze,tempRow,tempCol,path,visited)
-    if result is not None:
-        return result
+    #conduct neighbor check
+    for deltaRow,deltaCol in [[-1,0],[0,-1],[1,0],[0,1]]:
+        tempRow=curRow +deltaRow
+        tempCol=curCol +deltaCol
+        result=dfs(theMaze,tempRow,tempCol,path,visited)
+        if result is not None:
+            return result
+        
 def generateSolution(theMaze,theSolution):
     for row in range(len(theMaze)):
         for col in range(len(theMaze[0])):
