@@ -178,20 +178,27 @@ Dijkstra is used to find the lowest cost path in a weighted system. This maze is
             2. update prevGrid with temp location storing current location.
             3. update heapqueue with tempCost and temp location.
 5. Return None if unable to find a valid path.      
-## Helper Functions
+## Helper Functions and Modules
 ### Common functions
 1. generateMaze: Reads the maze.txt file and creates the 2D array with walls(1) and valid spots(0).
 2. printMaze: Iterates through the 2D array printing each value for maze.
 3. generateSolution: Updates the maze with path solution using "X" and prints out solution.
+4. findStartEndPos: Iterates through the 2d array and looks for start pos represented as "S" character and end pos represented as "F" character. Returns startPos and endPos.
 ### BFS
-1. findStartPos: Iterates through the 2D array and looks for "S" character. Returns row column as a tuple.
+#### Modules
+1. Uses collections module for deque class.
 ### DFS
-1. findStartPos: Iterates through the 2D array and looks for "S" character. Returns row column as a tuple.
-2. findFinishPos: Iterates through the 2D array and looks for "F" character. Returns row column as a tuple.
+#### Modules
+1. Iterative
+    1. Uses collections module for deque class.
+2. Recursive
 ### Dijkstra
+### Modules
+1. Uses the random module.
+2. uses the heapq module.
+### Functions
 1. randomizer: Contains a list for 0,3,4. Randomly returns a value from the list. 
 2. scatterWeights: Iterates through the 2D array and for every valid 0 spot, replaces it with a random valid weighted value using randomizer. Returns the updated maze with scattered weights.
-3. findStartEndPos: Iterates through the 2D array and looks for "S" and "F" characters. Returns startPos and endPos as tuples respectively.
 4. getCost: Contains a dictionary where keys represent valid spots 0,3,4 and values to represent weight cost 1,3,4.Returns the weight of the valid spot.
 5. getGrids: Creates two new grids to represent distance tracker and current path tracker. Iterates throught the the maze to create empty rows to match rows of maze for each grid. Distance tracker is set with "inf" for all valid unvisited spots and -1 for all walls. Path tacker sets None for all spots.  
 ## The Maze

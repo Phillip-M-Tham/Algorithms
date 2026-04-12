@@ -18,13 +18,18 @@ def printMaze(theMaze):
 
 printMaze(myMaze)#test for printing out the maze
 #finds start POS for BFS
-def findStartPos(theMaze):
+def findStartEndPos(theMaze):
+    startPos=[];
+    endPos=[];
     for row in range(len(theMaze)):
         for col in range(len(theMaze[row])):
             if theMaze[row][col] == 'S':
-                return (row,col)
+                startPos=[row,col]
+            if theMaze[row][col] =='F':
+                endPos=[row,col]
+    return startPos,endPos   
             
-StartPos= findStartPos(myMaze)
+StartPos,EndPos= findStartEndPos(myMaze)
 
 #in order for BFS to work, we need a queue, a visited set, starting position, and directions(up,down,left,right)
 def bfs(theMaze,startingposition):
