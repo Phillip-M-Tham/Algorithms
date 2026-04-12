@@ -34,12 +34,9 @@ print(startPos)
 print(endPos)
 
 def dfs(myMaze,startPos):
-    totalRows,totalCols= len(myMaze), len(myMaze[0])
     stack = deque()
     stack.append((startPos[0],startPos[1],[startPos]))
-
     visited=[]
-
     while(len(stack) >0):
         #pop last item from stack
         curRow,curCol,path =stack.pop()
@@ -52,43 +49,16 @@ def dfs(myMaze,startPos):
         #if we find goal return path
         if myMaze[curRow][curCol]=="F":
             return path +[(curRow,curCol)]
-        #check neighbors
-        #check up (5,5) -> (4,5)
-        tempRow = curRow -1
-        tempCol = curCol
-        if(tempRow >= 0):
-            if(myMaze[tempRow][tempCol]=="F"):
-                return path+[(tempRow,tempCol)]
-            if(myMaze[tempRow][tempCol]=="0"):
-                if (tempRow,tempCol) not in visited:
-                    stack.append((tempRow,tempCol,path+[(tempRow,tempCol)]))
-        #check left (5,5) ->(5,4)
-        tempRow=curRow
-        tempCol=curCol-1
-        if(tempCol >=0):
-            if(myMaze[tempRow][tempCol]=="F"):
-                return path+[(tempRow,tempCol)]
-            if(myMaze[tempRow][tempCol]=="0"):
-                if (tempRow,tempCol) not in visited:
-                    stack.append((tempRow,tempCol,path+[(tempRow,tempCol)]))
-        #check down (5,5) -> (6,5)
-        tempRow=curRow+1
-        tempCol=curCol
-        if(tempRow <totalRows):
-            if(myMaze[tempRow][tempCol]=="F"):
-                return path+[(tempRow,tempCol)]
-            if(myMaze[tempRow][tempCol]=="0"):
-                if (tempRow,tempCol) not in visited:
-                    stack.append((tempRow,tempCol,path+[(tempRow,tempCol)]))
-        #check right (5,5) -> (5,6)
-        tempRow=curRow
-        tempCol=curCol+1
-        if(tempCol <totalCols):
-            if(myMaze[tempRow][tempCol]=="F"):
-                return path+[(tempRow,tempCol)]
-            if(myMaze[tempRow][tempCol]=="0"):
-                if (tempRow,tempCol) not in visited:
-                    stack.append((tempRow,tempCol,path+[(tempRow,tempCol)]))
+        #check neighbors up,left,down,right, (5,5) -> (4,5)
+        for deltaRow,deltaCol in [[-1,0],[0,-1],[1,0],[0,1]]:
+            tempRow = curRow +deltaRow
+            tempCol = curCol +deltaCol
+            if(0 <= tempRow < len(myMaze) and 0 <= tempCol < len(myMaze[0])):
+                if(myMaze[tempRow][tempCol]=='F'):
+                    return path+[(tempRow,tempCol)]
+                if(myMaze[tempRow][tempCol]=='0'):
+                    if (tempRow,tempCol) not in visited:
+                        stack.append((tempRow,tempCol,path+[(tempRow,tempCol)]))
     #could not find a valid path
     return None
 
