@@ -39,46 +39,16 @@ DFS uses a stack to conduct LIFO, a list to track visited spots, and a method to
    4. Conduct goal check with current row and current column against maze.
       1. Update path with current row and current column.
       2. Return valid path.
-   5. Check above of current location:
-      1. Set temp location to above. (5,5) -> (4,5).
-      2. Check if temp location is still in bounds. (temp row >=0)
-      3. Conduct goal check with temp location.
-         1. Update path with temp location.
-         2. Return valid path.
-      4. Check if temp location is a valid spot in the maze(0).
-      5. Check if temp location is not already in visited list.
-      6. Add temp location to top of stack.
-         1. Updates path with temp location.
-   6. Check left of current location:
-      1. Set temp location to left. (5,5) -> (5,4).
-      2. Check if temp location is still in bounds. (temp column >=0)
-      3. Conduct goal check with temp location.
-         1. Update path with temp location.
-         2. Return valid path.
-      4. Check if temp location is a valid spot in the maze(0).
-      5. Check if temp location is not already in visited list.
-      6. Add temp location to top of stack.
-         1. Updates path with temp location.
-   7. Check below of current location:
-      1. Set temp location to below. (5,5) -> (6,5).
-      2. Check if temp location is still in bounds. (temp row < total rows of maze).
-      3. Conduct goal check with temp location.
-         1. Update path with temp location.
-         2. Return valid path.
-      4. Check if temp location is a valid spot in the maze(0).
-      5. Check if temp location is not already in visited list.
-      6. Add temp location to top of stack.
-         1. Updates path with temp location.
-   8. Check right of current location:
-      1. Set temp location to right. (5,5) -> (5,6).
-      2. Check if temp location is still in bounds. (temp column >= total columns of maze).
-      3. Conduct goal check with temp location.
-         1. Update path with temp location.
-         2. Return valid path.
-      4. Check if temp location is a valid spot in the maze(0).
-      5. Check if temp location is not already in visited list.
-      6. Add temp location to top of stack.
-         1. Updates path with temp location.
+   5. Run a for loop for coordinates up left down and right [-1,0],[0,-1],[1,0],[0,1] represented as [deltaRow,deltaCol].
+      1. update temprow and tempcol by adding tempRow to deltaRow and tempCol to deltaCol.
+      2. Conduct boundary check with temp location (0 <= tempRow < total rows of maze and 0 <= tempCol < total columns of maze).
+          1. Conduct goal check with temp location.
+             1. Update path with temp location.
+             2. Return valid path.
+          2. Check if temp location is a valid spot in the maze (0).
+             1. Check if temp location is not already in visited list.
+                1. Updates path with temp location.
+                2. Updates stack to process temp location.
 4. Return None if unable to find a valid path. 
 ### Logic Flow Recursively
 1. Conduct boundary check row lower limit (curRow < 0).
